@@ -21,4 +21,4 @@ jobs:
         run: pip install trufflehog
 
       - name: Run TruffleHog
-        run: trufflehog git --json --entropy=True --regex ${{ github.workspace }}
+        run: trufflehog git --json --entropy=True --regex $(git remote get-url origin)
