@@ -1,0 +1,23 @@
+name: TruffleHog Secret Scan
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  trufflehog_scan:
+    name: Run TruffleHog Secret Scan
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Run TruffleHog
+        uses: edplato/trufflehog-actions-scan@v1
+        with:
+          scanArguments: "--json --regex --entropy=False ./"
